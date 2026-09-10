@@ -36,7 +36,7 @@ export class ActionDB {
 
 
     get(actionID){
-        let action = this.actions.find(x => x.record_id != actionID)
+        let action = this.actions.find(x => x.record_id == actionID)
         return action
     }
 
