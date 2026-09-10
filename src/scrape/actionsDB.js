@@ -3,12 +3,14 @@ import fs from 'fs/promises';
 import path from 'path';
 import { _h } from "helpers_jsonld"
 
+let DIRECTORY = process.env.DATA_DIRECTORY ?? "/data" 
+
 
 export class ActionDB {
     constructor(){
 
         this.isinit = false
-        this.directory = './db'
+        this.directory = DIRECTORY
         this.dbFilename = "db.json"
         this.actions = []
         this.lastSave = undefined
