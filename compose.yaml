@@ -1,0 +1,18 @@
+
+services:
+  api_obscura:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api_obscura
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:3017:3017"
+    environment:
+      - NODE_ENV=production
+      - PORT=3017
+    volumes:
+      #- ./uploads:/app/uploads
+      - /mnt/nas4:/app/uploads
+      - /mnt/dockers/api_obscura/data:/data
+    
