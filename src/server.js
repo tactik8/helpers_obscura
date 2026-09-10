@@ -81,7 +81,7 @@ fastify.post('/scrape', {}, async (request, reply) => {
     let url = data?.url
     let action = await s.submitScrapeUrl(url)
 
-    return reply.code(201).send(action.record);
+    return reply.code(201).send(action.record ?? action);
 });
 
 

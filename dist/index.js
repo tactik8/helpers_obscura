@@ -16,5 +16,5 @@ import Et from"fastify";import qt from"@fastify/formbody";import"helpers_jsonld"
     
         <h2>Actions (${e.length})</h2>
         ${a}
-        `;return t.type("text/html"),i});D.post("/",{},async(n,t)=>{let a=n.body?.url,i=await O.submitScrapeUrl(a);return t.redirect("/")});D.post("/scrape",{},async(n,t)=>{let a=n.body?.url,i=await O.submitScrapeUrl(a);return t.code(201).send(i.record)});D.get("/actions",{},async(n,t)=>{let e=O.getRecords();return t.code(201).send(e)});D.get("/actions/:actionID",{},async(n,t)=>{let e=n.params?.actionID||n.query?.actionID,a=O.getRecord(e);return t.code(201).send(a)});async function Lt(){try{await D.listen({port:vt,host:Dt})}catch(n){D.log.error(n),process.exit(1)}}Lt();
+        `;return t.type("text/html"),i});D.post("/",{},async(n,t)=>{let a=n.body?.url,i=await O.submitScrapeUrl(a);return t.redirect("/")});D.post("/scrape",{},async(n,t)=>{let a=n.body?.url,i=await O.submitScrapeUrl(a);return t.code(201).send(i.record??i)});D.get("/actions",{},async(n,t)=>{let e=O.getRecords();return t.code(201).send(e)});D.get("/actions/:actionID",{},async(n,t)=>{let e=n.params?.actionID||n.query?.actionID,a=O.getRecord(e);return t.code(201).send(a)});async function Lt(){try{await D.listen({port:vt,host:Dt})}catch(n){D.log.error(n),process.exit(1)}}Lt();
 //# sourceMappingURL=index.js.map

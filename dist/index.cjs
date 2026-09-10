@@ -16,5 +16,5 @@ var St=Object.create;var it=Object.defineProperty;var At=Object.getOwnPropertyDe
     
         <h2>Actions (${e.length})</h2>
         ${a}
-        `;return t.type("text/html"),s});j.post("/",{},async(r,t)=>{let a=r.body?.url,s=await C.submitScrapeUrl(a);return t.redirect("/")});j.post("/scrape",{},async(r,t)=>{let a=r.body?.url,s=await C.submitScrapeUrl(a);return t.code(201).send(s.record)});j.get("/actions",{},async(r,t)=>{let e=C.getRecords();return t.code(201).send(e)});j.get("/actions/:actionID",{},async(r,t)=>{let e=r.params?.actionID||r.query?.actionID,a=C.getRecord(e);return t.code(201).send(a)});async function Ct(){try{await j.listen({port:Ut,host:_t})}catch(r){j.log.error(r),process.exit(1)}}Ct();
+        `;return t.type("text/html"),s});j.post("/",{},async(r,t)=>{let a=r.body?.url,s=await C.submitScrapeUrl(a);return t.redirect("/")});j.post("/scrape",{},async(r,t)=>{let a=r.body?.url,s=await C.submitScrapeUrl(a);return t.code(201).send(s.record??s)});j.get("/actions",{},async(r,t)=>{let e=C.getRecords();return t.code(201).send(e)});j.get("/actions/:actionID",{},async(r,t)=>{let e=r.params?.actionID||r.query?.actionID,a=C.getRecord(e);return t.code(201).send(a)});async function Ct(){try{await j.listen({port:Ut,host:_t})}catch(r){j.log.error(r),process.exit(1)}}Ct();
 //# sourceMappingURL=index.cjs.map
