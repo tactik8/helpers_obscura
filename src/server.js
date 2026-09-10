@@ -74,44 +74,17 @@ fastify.post('/', {}, async (request, reply) => {
 
 
 // POST endpoint with schema validation
-fastify.get('/scrape', {}, async (request, reply) => {
+fastify.post('/scrape', {}, async (request, reply) => {
 
 
-    let url = request?.query?.url ?? request?.params?.url ?? 'https://www.mondou.com'
+    let data = request.body
+    let url = data?.url
+    let action = await s.submitScrapeUrl(url)
 
-
-    let action = await s.scrapeUrl(url)
-
-    return reply.code(201).send(action);
+    return reply.code(201).send(action.record);
 });
 
 
-
-// POST endpoint with schema validation
-fastify.get('/scrape/:browserID', {}, async (request, reply) => {
-
-
-
-
-    let action = new _h.things.Action('Scrape webpage')
-
-
-    let url = request?.query?.url ?? request?.params?.url ?? 'https://www.mondou.com'
-
-    action.object = new _h.things.WebPage(url)
-
-    console.log('url', url)
-    let s = new scraper.Scraper(OBSCURA_URL)
-
-    await s.init()
-
-
-    let result = await s.scrapeUrl(url)
-
-    action.setCompleted(result)
-
-    return reply.code(201).send(action);
-});
 
 
 fastify.get('/actions', {}, async (request, reply) => {
