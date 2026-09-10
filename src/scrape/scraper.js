@@ -67,7 +67,8 @@ export class Scraper {
     getRecord(actionID){
         return actionDB.getRecord(actionID)
     }
-     getRecords(){
+     
+    getRecords(){
         return actionDB.getRecords()
     }
 

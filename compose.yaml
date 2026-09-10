@@ -11,7 +11,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3017
-      - DATA_DIRECTORY=/DATA
+      - DATA_DIRECTORY=/data
     volumes:
       #- ./uploads:/app/uploads
       - /mnt/nas4:/app/uploads

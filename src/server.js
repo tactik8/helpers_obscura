@@ -51,7 +51,7 @@ fastify.get('/', {}, async (request, reply) => {
         ${actionsContent}
         `
 
-    
+
 
 
 
@@ -67,7 +67,7 @@ fastify.post('/', {}, async (request, reply) => {
     let data = request.body
     let url = data?.url
     let action = await s.submitScrapeUrl(url)
-    return reply.redirect('/'); 
+    return reply.redirect('/');
 
 })
 
@@ -80,7 +80,7 @@ fastify.get('/scrape', {}, async (request, reply) => {
     let url = request?.query?.url ?? request?.params?.url ?? 'https://www.mondou.com'
 
 
-    let action = await s.scrapeUrl(url) 
+    let action = await s.scrapeUrl(url)
 
     return reply.code(201).send(action);
 });
@@ -94,7 +94,7 @@ fastify.get('/scrape/:browserID', {}, async (request, reply) => {
 
 
     let action = new _h.things.Action('Scrape webpage')
-    
+
 
     let url = request?.query?.url ?? request?.params?.url ?? 'https://www.mondou.com'
 
@@ -106,7 +106,7 @@ fastify.get('/scrape/:browserID', {}, async (request, reply) => {
     await s.init()
 
 
-    let result = await s.scrapeUrl(url) 
+    let result = await s.scrapeUrl(url)
 
     action.setCompleted(result)
 
@@ -117,8 +117,7 @@ fastify.get('/scrape/:browserID', {}, async (request, reply) => {
 fastify.get('/actions', {}, async (request, reply) => {
 
 
-    let actions = s.getRecords()()
-    
+    let actions = s.getRecords()
     return reply.code(201).send(actions);
 
 });
@@ -126,23 +125,22 @@ fastify.get('/actions', {}, async (request, reply) => {
 
 fastify.get('/actions/:actionID', {}, async (request, reply) => {
 
-
     let actionID = request.params?.actionID || request.query?.actionID
-   let action = s.getRecord(actionID)
-    
+    let action = s.getRecord(actionID)
     return reply.code(201).send(action);
+
 });
 
 
 
-async function startServer(){
+async function startServer() {
 
     try {
-    await fastify.listen( { "port": PORT, "host": HOST } );
-} catch (err) {
-    fastify.log.error(err);
-    process.exit(1);
-}
+        await fastify.listen({ "port": PORT, "host": HOST });
+    } catch (err) {
+        fastify.log.error(err);
+        process.exit(1);
+    }
 }
 
 

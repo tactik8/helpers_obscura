@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { _h } from "helpers_jsonld"
 
-let DIRECTORY = process.env.DATA_DIRECTORY ?? "/data" 
+let DIRECTORY = process.env.DATA_DIRECTORY ?? "./db" 
 
 
 export class ActionDB {
