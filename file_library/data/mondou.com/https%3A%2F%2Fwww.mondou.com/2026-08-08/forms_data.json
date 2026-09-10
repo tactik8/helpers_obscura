@@ -1,0 +1,92 @@
+[
+  {
+    "formIndex": 1,
+    "id": null,
+    "name": "simpleSearch",
+    "action": "https://www.mondou.com/fr-CA/search",
+    "method": "GET",
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "name": "q",
+        "id": null,
+        "placeholder": "Rechercher...",
+        "required": false,
+        "value": null
+      },
+      {
+        "tag": "input",
+        "type": "hidden",
+        "name": "lang",
+        "id": null,
+        "placeholder": null,
+        "required": false,
+        "value": "null"
+      }
+    ]
+  },
+  {
+    "formIndex": 2,
+    "id": null,
+    "name": "simpleSearch",
+    "action": "https://www.mondou.com/fr-CA/search",
+    "method": "GET",
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "text",
+        "name": "q",
+        "id": null,
+        "placeholder": "Rechercher...",
+        "required": false,
+        "value": null
+      },
+      {
+        "tag": "input",
+        "type": "hidden",
+        "name": "lang",
+        "id": null,
+        "placeholder": null,
+        "required": false,
+        "value": "null"
+      }
+    ]
+  },
+  {
+    "formIndex": 3,
+    "id": "NewsletterForm",
+    "name": "dwfrm_newsletter",
+    "action": "https://www.mondou.com/on/demandware.store/Sites-Mondou_CA-Site/fr_CA/Newsletter-Validate",
+    "method": "POST",
+    "inputs": [
+      {
+        "tag": "input",
+        "type": "hidden",
+        "name": "recordType",
+        "id": "recordType",
+        "placeholder": null,
+        "required": false,
+        "value": "0124x000000EBV9AAO"
+      },
+      {
+        "tag": "input",
+        "type": "hidden",
+        "name": "language",
+        "id": "language",
+        "placeholder": null,
+        "required": false,
+        "value": "OCC-FR"
+      },
+      {
+        "tag": "input",
+        "type": "text",
+        "name": "dwfrm_newsletter_email",
+        "id": "email",
+        "placeholder": "Saisissez votre courriel",
+        "required": false,
+        "value": null
+      }
+    ]
+  }
+]

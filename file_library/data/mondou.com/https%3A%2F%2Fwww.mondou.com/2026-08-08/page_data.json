@@ -1,0 +1,83 @@
+{
+  "url": "https://www.mondou.com/",
+  "title": "Mondou : Magasin pour animaux en ligne et en magasin",
+  "description": "Les meilleurs produits pour animaux : nourriture pour chat et chien, jouets, gâteries, arbres à chat, cages, laisses, litières et plus!",
+  "canonicalUrl": "https://www.mondou.com/",
+  "language": "fr",
+  "author": null,
+  "openGraph": {
+    "image": "https://www.mondou.com/on/demandware.static/Sites-Mondou_CA-Site/-/default/dw324e3b40/images/favicons/favicon-192x192.png",
+    "image:alt": "favicon",
+    "type": "website",
+    "site_name": "Mondou",
+    "title": "Mondou : Magasin pour animaux en ligne et en magasin",
+    "description": "Les meilleurs produits pour animaux : nourriture pour chat et chien, jouets, gâteries, arbres à chat, cages, laisses, litières et plus!",
+    "locale": "fr",
+    "url": "https://www.mondou.com/"
+  },
+  "schemaJsonLd": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mondou",
+      "logo": "generic-logo.jpg",
+      "description": "Tout pour les animaux",
+      "slogan": "La plus grande marque d'affection",
+      "url": "https://www.mondou.com/on/demandware.store/Sites-Mondou_CA-Site",
+      "sameAs": [
+        "https://www.instagram.com/mondou_calin/",
+        "https://www.facebook.com/mondou",
+        "https://www.twitter.com/mondou"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Anjou",
+        "addressRegion": "Quebec",
+        "postalCode": "H1J 2V7",
+        "streetAddress": "10400 Rue Renaude-Lapointe"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "45.6112944",
+        "longitude": "-73.5911447"
+      },
+      "telephone": "+1 514-322-5300",
+      "image": "generic-logo.jpg"
+    }
+  ],
+  "headings": {
+    "h1": [],
+    "h2": [
+      "Magasinez les essentiels de votre animal",
+      "Nouveautés",
+      "Pro Plan Veterinary Supplements - \n            Suppléments Hydra Care Hydratation pour chats",
+      "Eukanuba - \n            Nourriture sèche pour chiens sénior de grande taille, 15 kg",
+      "Petstory - \n            Gâteries à lécher Mousse pour chats, mélange assorti",
+      "Zanimo - \n            Poudre granulée santé buccale pour chiens,  45 g",
+      "BeOneBreed - \n            Ensemble de promenade en silicone pour petits chiens, Velour rose",
+      "ZOOM PETS - \n            Jouet Romeo le rhino pour chiens",
+      "Open Farm - \n            Nourriture sèche GoodGut recette au saumon sauvage pour chiens, 1,58 kg",
+      "EctoPet - \n            Traitement de retrait des tiques pour animaux",
+      "Brigade - \n            Double gamelle en céramique pour chats",
+      "ZOOM PETS - \n            Souris de course",
+      "Rejoignez-nous dans l'aventure en identifiant @mondou_calin\n#mondou",
+      "Conseils du mois",
+      "La 9ᵉ édition de Mondou Mondon pour les refuges établit un nouveau record de 450 000 $",
+      "Nouveau chez soi : comment intégrer les accessoires de votre chien ou chat avec style",
+      "Zone adoption Mondou : tout savoir pour adopter et accueillir un chat",
+      "Services",
+      "Supprimer le produit ?"
+    ],
+    "h3": [
+      "Achetez local",
+      "Livraisons Automatiques",
+      "Profitez des différents services",
+      "Devenez membre Câlin",
+      "Achetez local",
+      "Livraisons Automatiques",
+      "Plusieurs services offerts en magasin",
+      "Devenez membre Câlin"
+    ]
+  },
+  "textSample": "window.dataLayer = window.dataLayer || []; document.addEventListener(\"DOMContentLoaded\", function (event) { // GTM loader, run directly instead of via eval() of a string — // eval() requires 'unsafe-eval', which the CSP deliberately omits. (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });"
+}

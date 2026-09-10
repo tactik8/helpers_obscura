@@ -1,0 +1,40 @@
+{
+  "name": "test_obscura",
+  "version": "0.0.3",
+  "description": "MongoDB client",
+  "license": "ISC",
+  "author": "",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "build": "rm -rf dist && npm run build:cjs && npm run build:esm",
+    "build:cjs": "esbuild src/server.js --bundle --packages=external --sourcemap --minify --platform=node --format=cjs --outfile=dist/index.cjs",
+    "build:esm": "esbuild src/server.js --bundle --packages=external --sourcemap --minify --platform=node --format=esm --outfile=dist/index.js",
+    "dev": "node src/server.js",
+    "start": "node src/server.js",
+    "server": "node src/server.js",
+    "d": "npm install github:tactik8/helpers_jsonld;"
+  },
+  "dependencies": {
+    "@fastify/formbody": "^9.0.0",
+    "esbuild": "^0.28.2",
+    "fast-xml-parser": "^5.10.1",
+    "fastify": "^5.12.3",
+    "helpers_jsonld": "github:tactik8/helpers_jsonld",
+    "mongodb": "^7.2.0",
+    "puppeteer": "^25.5.0",
+    "puppeteer-core": "^25.5.0",
+    "turndown": "^7.2.4"
+  }
+}
