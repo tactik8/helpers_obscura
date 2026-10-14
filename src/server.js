@@ -37,16 +37,28 @@ fastify.get('/', {}, async (request, reply) => {
     let html = `
     
 
-            <form action="/" method="POST">
-        <!-- Text Input -->
-        <label for="url">url:</label>
-        <input type="text" id="url" name="url" required>
+        <form action="/" method="POST">
+            <!-- Text Input -->
+            <label for="url">url:</label>
+            <input type="text" id="url" name="url" required>
 
-       
+        
 
-        <!-- Submit Button -->
-        <button type="submit">Submit Data</button>
+            <!-- Submit Button -->
+            <button type="submit">Get webpage</button>
         </form>
+
+        <form action="/" method="POST">
+            <!-- Text Input -->
+            <label for="url">url:</label>
+            <input type="text" id="url" name="url" required>
+
+        
+
+            <!-- Submit Button -->
+            <button type="submit">Get sitemap</button>
+        </form>
+
     
         <h2>Actions (${actions.length})</h2>
         ${actionsContent}
@@ -81,6 +93,17 @@ fastify.post('/scrape', {}, async (request, reply) => {
     let data = request.body
     let url = data?.url
     let action = await s.submitScrapeUrl(url)
+
+    return reply.code(201).send(action.record ?? action);
+});
+
+// POST endpoint with schema validation
+fastify.post('/sitemap', {}, async (request, reply) => {
+
+
+    let data = request.body
+    let url = data?.url
+    let action = await s.submitSitemap(url)
 
     return reply.code(201).send(action.record ?? action);
 });

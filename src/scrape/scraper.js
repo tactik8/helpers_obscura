@@ -3,9 +3,12 @@ import { extractAll } from './extractMethods.js'
 import { _h } from "helpers_jsonld"
 import { setTimeout } from 'node:timers/promises';
 
+import * as scrapeSitemap from './scrapeSitemap.js'
+
 import { ActionDB } from './actionsDB.js'
 
 let actionDB = new ActionDB()
+await actionDB.load()
 
 
 export class Scraper {
@@ -99,6 +102,33 @@ export class Scraper {
 
     }
 
+    async submitSitemap(url) {
+        await this.init()
+        let action = new _h.things.Action('Get sitemap')
+        action.object = new _h.things.WebSite(url)
+        action.setPotential()
+        actionDB.set(action)
+
+        return action.record
+
+    }
+
+    async getSitemap(url){
+
+
+        let action = new _h.things.Action('Get sitemap')
+        action.object = new _h.things.WebSite(url)
+        actionDB.set(action)
+
+        let results = scrapeSitemap.getSitemap(url)
+
+        action.setCompleted(results)
+        actionDB.set(action)
+
+        return action.record
+
+
+    }
 
     async scrapeUrl(url) {
 
@@ -160,11 +190,22 @@ export class Scraper {
             let action = actions?.[0]
 
             if (action) {
-                console.log(`Scraping started ${action.object[0].url}`)
-                action.setActive()
-                actionDB.set(action)
-                let r = await this._scraperWorker(action)
-                console.log(`Scraping completed ${action.object[0].url}`)
+
+                if(action.name = 'Scrape webpage'){
+                    console.log(`Scraping started ${action.object[0].url}`)
+                    action.setActive()
+                    actionDB.set(action)
+                    let r = await this._scraperWorker(action)
+                    console.log(`Scraping completed ${action.object[0].url}`)
+                }
+                if(action.name = 'Get sitemap'){
+                    console.log(`Sitemap started ${action.object[0].url}`)
+                    action.setActive()
+                    actionDB.set(action)
+                    let r = await this._sitemapWorker(action)
+                    console.log(`Sitemap completed ${action.object[0].url}`)
+                }
+
             }
 
             await setTimeout(1000);
@@ -184,4 +225,17 @@ export class Scraper {
         actionDB.set(action)
         return
     }
+
+    async _sitemapWorker(action) {
+
+        let url = action.object[0].url
+
+        let results = await scrapeSitemap.getSitemap(url)
+
+        action.setCompleted(results)
+        actionDB.set(action)
+        return
+    }
+
+
 }
