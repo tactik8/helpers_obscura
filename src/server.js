@@ -11,14 +11,15 @@ let PORT = '3017'
 let HOST = '0.0.0.0'
 
 let OBSCURA_URL = 'ws://192.168.2.243:9222/devtools/browser'
-
+let OBSCURA_TOKEN = "5f3100605fd85f9463c81806a4f973769ca280db7faa77fcbb9c9859be0b4ab9"
 
 const fastify = Fastify({ trustProxy: true, logger: true });
 
 fastify.register(formbody);
 
 
-let s = new scraper.Scraper(OBSCURA_URL)
+let s = new scraper.Scraper(OBSCURA_URL, OBSCURA_TOKEN)
+let rr = await s.init()
 
 
 // POST endpoint with schema validation

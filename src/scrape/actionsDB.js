@@ -3,11 +3,11 @@ import fs from 'fs/promises';
 import path from 'path';
 import { _h } from "helpers_jsonld"
 
-let DIRECTORY = process.env.DATA_DIRECTORY ?? "./db" 
+let DIRECTORY = process.env.DATA_DIRECTORY ?? "./db"
 
 
 export class ActionDB {
-    constructor(){
+    constructor() {
 
         this.isinit = false
         this.directory = DIRECTORY
@@ -17,9 +17,9 @@ export class ActionDB {
 
     }
 
-    async init(){
+    async init() {
 
-        if(this.isinit == true){
+        if (this.isinit == true) {
             return
         }
 
@@ -30,21 +30,21 @@ export class ActionDB {
     }
 
 
-    active(){
+    active() {
         return this.actions.filter()
     }
 
 
-    get(actionID){
+    get(actionID) {
         let action = this.actions.find(x => x.record_id == actionID)
         return action
     }
 
-    getAll(){
+    getAll() {
         return this.actions
     }
 
-    set(action){
+    set(action) {
         this.actions = this.actions.filter(x => x.record_id != action.record_id)
         this.actions.push(action)
         this.save()
@@ -52,43 +52,43 @@ export class ActionDB {
     }
 
 
-    getRecord(actionID){
+    getRecord(actionID) {
         let record = this.get(actionID)
         return record?.record ?? record
     }
 
-     getRecords(){
+    getRecords() {
         let records = this.getAll()
         return records.map(x => x?.record ?? x)
     }
 
 
 
-    async save(){
+    async save() {
         let actions = this.actions
         actions = actions.map(x => x?.record ?? x)
         await saveTextFile(this.directory, this.dbFilename, actions)
         this.lastSave = new Date()
         console.log('Save')
     }
-    async load(){
+    async load() {
         let actions = await loadTextFile(this.directory, this.dbFilename) || []
 
-        for(let action of actions){
+        for (let action of actions) {
 
             let w = new _h.things.WebPage()
             w._record = action.object
-            
+
 
             let a = new _h.things.Action()
             a.record = action
             a._record.object = w
-            
+
 
             this.actions.push(a)
-            
+
         }
-        
+
         let activeActions = this.actions.filter(x => x.isActive == true)
         activeActions.forEach(x => x.setFailed('Server restart'))
 
@@ -113,7 +113,7 @@ async function saveTextFile(filePath, filename, record) {
     let content = ''
     try {
         content = JSON.stringify(record, null, 4)
-    } catch(err){
+    } catch (err) {
         console.error(`Error json stringify: ${err} ${record}`);
         return
     }
@@ -131,14 +131,14 @@ async function loadTextFile(filePath, filename) {
         let text = await fs.readFile(filePath + '/' + filename, 'utf8');
         try {
             return JSON.parse(text)
-        } catch(err){
+        } catch (err) {
             console.error(`Non valid content: ${text}`);
             return []
         }
     } catch (error) {
 
         let e = String(error)
-        if(e.includes('no such file or directory')){
+        if (e.includes('no such file or directory')) {
             return []
         }
         console.error(`Error loading file: ${error.message}`);

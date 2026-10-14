@@ -9,13 +9,20 @@ let actionDB = new ActionDB()
 
 
 export class Scraper {
-    constructor(api_url) {
+    constructor(api_url, api_token) {
         this._api_url = api_url
+        this._api_token = api_token
         this.browser
         this.page
+        this._startingflag = false
     }
 
     async init() {
+
+        if(this._startingflag == true){
+            return
+        }
+        this._startingflag = true
 
         if (this.browser) {
             return
@@ -24,10 +31,17 @@ export class Scraper {
         await actionDB.init()
 
         this.browser = "pending"
+                console.log('Starting')
+
         this.browser = await puppeteer.connect({
-            browserWSEndpoint: this._api_url,
+            browserWSEndpoint: this._api_url ,
+                headers: {
+                'Authorization': `Bearer ${this._api_token}`
+                }
+            
         });
 
+        console.log('Started')
         this.page = await this.browser.newPage();
 
 
@@ -78,6 +92,9 @@ export class Scraper {
         action.object = new _h.things.WebPage(url)
         action.setPotential()
         actionDB.set(action)
+
+        
+
         return action.record
 
     }
@@ -91,8 +108,8 @@ export class Scraper {
         action.object = new _h.things.WebPage(url)
         actionDB.set(action)
 
-
-        await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+        console.log('Adding url', url)
+        let r = await this.page.goto(url, { waitUntil: 'domcontentloaded' });
 
         let results = await extractAll(this.page, url)
 
@@ -130,14 +147,15 @@ export class Scraper {
 
     async _scraperEngine() {
 
-
+        console.log('Starting engine')
 
         while (true) {
 
 
             let actions = actionDB.actions
 
-            actions = actions.filter(x => x.isPotential == true)
+            actions = actions.filter(x => _h.isPotential(x) == true)
+
 
             let action = actions?.[0]
 
